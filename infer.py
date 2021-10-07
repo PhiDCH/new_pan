@@ -135,22 +135,22 @@ def extract_wordboxes(config_file, model, img):
 
 if __name__ == '__main__':
         
-    parser = argparse.ArgumentParser(description='Hyperparams')
-    parser.add_argument('config', type=str, nargs='?',help='config file path', default='config/pan/pan_r18_ic15.py')
-    parser.add_argument('checkpoint', nargs='?', type=str, default='/home/dev/Downloads/phi/pan_pp.pytorch/checkpoints/pan_r18_alldata2/checkpoint.pth.tar')
+    # parser = argparse.ArgumentParser(description='Hyperparams')
+    # parser.add_argument('config', type=str, nargs='?',help='config file path', default='config/pan/pan_r18_ic15.py')
+    # parser.add_argument('checkpoint', nargs='?', type=str, default='/home/dev/Downloads/phi/pan_pp.pytorch/checkpoints/pan_r18_alldata2/checkpoint.pth.tar')
     # parser.add_argument('checkpoint', nargs='?', type=str, default='/home/dev/Downloads/phi/pan_pp.pytorch/checkpoints/pan_r18_alldata2.pth.tar')
     # parser.add_argument('checkpoint', nargs='?', type=str, default='/home/dev/Downloads/phi/pan_pp.pytorch/checkpoints/pan_r18_synth.pth.tar')
-    args = parser.parse_args()
+    # args = parser.parse_args()
 
     # print(args.checkpoint)
     # print(args.config)
     
     config_file = 'config.py'
-    model_path = '../checkpoints/pan_r18_synth.pth.tar'
+    model_path = 'checkpoint/pan.pth.tar'
         
     model =  load_model(config_file, model_path)
     
-    img = cv2.imread('../test.jpg')
+    img = cv2.imread('../TextSpottingAndTextClassify/img_1.jpg')
     poly = extract_wordboxes(config_file, model, img)
     
     img_save = cv2.polylines(img, [box.reshape((4,2)) for box in poly], True, (0,255,0), 1)
