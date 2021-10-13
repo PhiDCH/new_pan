@@ -1,4 +1,5 @@
-import models
+# import models
+from .pa_head import PA_Head
 
 
 def build_head(cfg):
@@ -8,6 +9,7 @@ def build_head(cfg):
             continue
         param[key] = cfg[key]
 
-    head = models.head.__dict__[cfg.type](**param)
+    # head = models.head.__dict__[cfg.type](**param)
+    head = PA_Head(**param)
 
     return head
