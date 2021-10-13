@@ -1,4 +1,5 @@
-import models
+# from . import models
+from .resnet import resnet18
 
 
 def build_backbone(cfg):
@@ -8,6 +9,7 @@ def build_backbone(cfg):
             continue
         param[key] = cfg[key]
 
-    backbone = models.backbone.__dict__[cfg.type](**param)
+    # backbone = models.backbone.__dict__[cfg.type](**param)
+    back = resnet18(**param)
 
-    return backbone
+    return back
