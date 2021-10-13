@@ -15,9 +15,9 @@ import cv2
 
 # from dataset import build_data_loader
 # from models import build_model
-from models import PAN
-from models.utils import fuse_module
-from utils import ResultFormat, AverageMeter, Corrector
+from .models import PAN
+from .models.utils import fuse_module
+from .utils import ResultFormat, AverageMeter, Corrector
 
 
 def test(test_loader, model, cfg):
@@ -54,7 +54,7 @@ def scale_aligned_short(img, short_size=736):
 
 
 
-def load_model(config_file, model_path):
+def load_model_pan(config_file, model_path):
     cfg = Config.fromfile(config_file)
     # model
     param = dict()
@@ -126,7 +126,7 @@ def get_input(config_file, img):
     data.update(dict(cfg=cfg))
     return data
 
-def extract_wordboxes(config_file, model, img):
+def extract_wordbox_pan(config_file, model, img):
     model_input = get_input(config_file, img)
     with torch.no_grad():
         outputs = model(**model_input)
